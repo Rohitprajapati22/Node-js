@@ -15,7 +15,9 @@ app.use(express.urlencoded())
 
 
 const path = require('path');
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 const multer = require('multer');
 
 const { unlinkSync } = require('fs');
@@ -42,12 +44,10 @@ app.get('/view', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-
     return res.render('AddBook')
 })
-app.post('/insertDetail', fileUplad, (req, res) => {
 
- 
+app.post('/insertDetail', fileUplad, (req, res) => {
     const { name, price, pages, author } = req.body
     BookModel.create({
         name: name,

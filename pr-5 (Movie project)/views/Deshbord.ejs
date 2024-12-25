@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Movie Gallery</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+        .movie-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+        }
+
+
+
+        .movie-card img {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .movie-title {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .movie-rating {
+            font-size: 1rem;
+            color: #ffc107;
+            font-weight: bold;
+        }
+
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .btn-secondary:active {
+            background-color: #545b62;
+            border-color: #494f54;
+        }
+
+        .btn-secondary a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .btn-secondary a:hover {
+            color: #f8f9fa;
+        }
+
+
+
+        .carousel-item img {
+            height: 600px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+
+        .movie-card .card-body {
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+
+        .movie-card .card-body::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f0f0f0;
+            transition: top 0.3s ease;
+            z-index: -1;
+        }
+
+        .movie-card:hover .card-body::before {
+            top: 0;
+        }
+
+        .movie-card:hover .card-body {
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand">Movie Gallery</a>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-secondary mx-2">
+                        <a href="/add" class="text-white text-decoration-none">Add Movies</a>
+                    </button>
+                    <button type="button" class="btn btn-secondary mx-2">
+                        <a href="/view" class="text-white text-decoration-none">View Movies</a>
+                    </button>
+                </div>
+
+            </div>
+        </nav>
+
+
+
+
+        <!-- Slider -->
+        <div id="carouselExampleControlsNoTouching" class="carousel slide mb-4" data-bs-touch="false"
+            data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../uploads/imeges/01.jpg" class="d-block w-100" alt="Movie 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="../uploads/imeges/02.jpg" class="d-block w-100" alt="Movie 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="../uploads/imeges/03.jpg" class="d-block w-100" alt="Movie 3">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+
+
+
+
+        <!-- Movie Cards -->
+        <div class="row g-4 my-3">
+
+            <div class="col-md-3">
+                <div class="card movie-card">
+                    <img src="../uploads/imeges/puspa.jpg" alt="Pushpa 2">
+                    <div class="card-body">
+                        <h5 class="movie-title">Pushpa 2:The Rule</h5>
+                        <p class="movie-rating">⭐ 9.971</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="card movie-card">
+                    <img src="../uploads/imeges/kgf.jpg" alt="K.G.F: Chapter 2">
+                    <div class="card-body">
+                        <h5 class="movie-title">K.G.F: Chapter 2</h5>
+                        <p class="movie-rating">⭐ 9.787</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="card movie-card">
+                    <img src="../uploads/imeges/vicky.jpg" alt="Vicky Vidya Ka Woh Wala Video">
+                    <div class="card-body">
+                        <h5 class="movie-title">Vicky Vidya Ka Woh Wala..</h5>
+                        <p class="movie-rating">⭐ 7.078</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="card movie-card">
+                    <img src="../uploads/imeges/khel.jpg" alt="Deadpool & Wolverine">
+                    <div class="card-body">
+                        <h5 class="movie-title">Deadpool & Wolverine</h5>
+                        <p class="movie-rating">⭐ 6.54</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-3">
+                <div class="card movie-card">
+                    <img src="../uploads/imeges/lucky.jpg" alt="Lucky Baskhar">
+                    <div class="card-body">
+                        <h5 class="movie-title">Lucky Baskhar</h5>
+                        <p class="movie-rating">⭐8.812</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-3">
+                <div class="card movie-card">
+                    <img src="../uploads/imeges/venom.jpg" alt="Venom: The Last Dance">
+                    <div class="card-body">
+                        <h5 class="movie-title">Venom: The Last Dance</h5>
+                        <p class="movie-rating">⭐ 6.54</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-3">
+                <div class="card movie-card">
+                    <img src="../uploads/imeges/bhool.jpg" alt="Bhool Bhulaiyaa 3">
+                    <div class="card-body">
+                        <h5 class="movie-title">Bhool Bhulaiyaa 3</h5>
+                        <p class="movie-rating">⭐ 8.54</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-3">
+                <div class="card movie-card">
+                    <img src="../uploads/imeges/ddoremon.jpg" alt="Nobita's Little Star Wars">
+                    <div class="card-body">
+                        <h5 class="movie-title">Nobita's Little Star Wars</h5>
+                        <p class="movie-rating">⭐ 6.40</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="card movie-card">
+                    <img src="../uploads/imeges/singum.jpg" alt="Singham Again">
+                    <div class="card-body">
+                        <h5 class="movie-title">Singham Again</h5>
+                        <p class="movie-rating">⭐ 5.40</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="card movie-card">
+                    <img src="../uploads/imeges/double.jpg" alt="Double iSmart">
+                    <div class="card-body">
+                        <h5 class="movie-title">Double iSmart</h5>
+                        <p class="movie-rating">⭐ 6.40</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="card movie-card">
+                    <img src="../uploads/imeges/kanguva.jpg" alt="Kanguva">
+                    <div class="card-body">
+                        <h5 class="movie-title">Kanguva</h5>
+                        <p class="movie-rating">⭐ 8.40</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-3">
+                <div class="card movie-card">
+                    <img src="../uploads/imeges/red one.jpg" alt="Red One">
+                    <div class="card-body">
+                        <h5 class="movie-title">Red One</h5>
+                        <p class="movie-rating">⭐ 6.40</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
