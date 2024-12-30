@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Discover the latest trends in women's fashion with Libazz. Shop shoes, bags, and more at unbeatable prices!">
+    <meta name="keywords" content="fashion, women's clothing, shoes, accessories, trendy, handmade products">
+    <meta name="author" content="Libazz Fashion">
+    <title>Libazz Fashion - men's Fashion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1a2a3a;
+            color: white;
+            padding: 20px 30px;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .navbar a {
+            color: #ecf0f1;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #f39c12;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #2c3e50;
+            color: white;
+            padding-top: 40px;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .sidebar h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            color: #ecf0f1;
+            padding: 16px 20px;
+            text-decoration: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #2980b9;
+        }
+
+        /* Content */
+        .content {
+            margin-left: 250px;
+            background-color: #ecf0f1;
+        }
+
+        /* Banner Section */
+        .banner {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 60px 40px;
+            background: linear-gradient(45deg, #ff6a00, #ee0979);
+            color: white;
+            border-radius: 10px;
+            background-image: url('/uploads/assets/img/benner.jpg');
+            background-size: cover;
+            height: 600px;
+            padding: 100px;
+        }
+
+        .banner span {
+            color: #000;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+
+        }
+
+        .banner h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .banner p {
+            margin: 15px 0;
+            font-size: 1.2rem;
+            color: #474747;
+        }
+
+        .banner button {
+            background-color: #1a2a3a;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .banner button:hover {
+            background-color: #34495e;
+        }
+
+        /* Product Section */
+        .product-section {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: white;
+
+        }
+
+        .product-section h2 {
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            color: #2c3e50;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* Display 4 cards per row */
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid #ddd;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .card-body {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #777;
+        }
+
+        .btn {
+            background-color: #ff6a00;
+            color: #fff;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ee0979;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: #ff6a00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Libazz Fashion</h2>
+        <a href="/addblog">Add Blog</a>
+        <a href="/viewblog">View Blog</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Navbar -->
+        <div class="navbar">
+            <h1>Libazz Fashion</h1>
+            <div>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+
+        <!-- Banner Section -->
+        <div class="banner">
+            <div>
+                <span>20% Off New Trade</span>
+                <h1>MEN FASHION</h1>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <button>Shop Now</button>
+            </div>
+        </div>
+
+        <!-- Product Section -->
+        <div class="product-section">
+            <h2>Our Best Blogs</h2>
+            <div class="container">
+                <div class="card">
+                    <img src="/uploads/assets/img/01.jpg" alt="Blog Image">
+                    <div class="card-body">
+                        <h3 class="card-title">Blog Title</h3>
+                        <p class="card-text">$29.00</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/uploads/assets/img/02.jpg" alt="Blog Image">
+                    <div class="card-body">
+                        <h3 class="card-title">Blog Title</h3>
+                        <p class="card-text">$29.00</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/uploads/assets/img/03.jpg" alt="Blog Image">
+                    <div class="card-body">
+                        <h3 class="card-title">Blog Title</h3>
+                        <p class="card-text">$29.00</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/uploads/assets/img/04.jpg" alt="Blog Image">
+                    <div class="card-body">
+                        <h3 class="card-title">Blog Title</h3>
+                        <p class="card-text">$29.00</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Libazz Fashion. All Rights Reserved.</p>
+            <a href="/privacy-policy">Privacy Policy</a> |
+            <a href="/terms">Terms & Conditions</a>
+        </footer>
+    </div>
+
+</body>
+
+</html>

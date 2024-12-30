@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register User</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 0 20px;
+        }
+
+        /* Register Form Container */
+        .register-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .register-container h2 {
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .register-container input[type="text"],
+        .register-container input[type="password"],
+        .register-container input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #f4f4f4;
+            transition: border-color 0.3s ease;
+        }
+
+        .register-container input[type="text"]:focus,
+        .register-container input[type="password"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .register-container input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+        }
+
+        .register-container input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        .register-container a {
+            display: inline-block;
+            margin-top: 15px;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .register-container a:hover {
+            text-decoration: underline;
+        }
+
+    
+    </style>
+</head>
+
+<body>
+
+    <div class="register-container">
+        <h2>Register User</h2>
+        <form action="/registeruser" method="post">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" placeholder="Enter your name" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <div>
+                <input type="submit" value="Register">
+            </div>
+        </form>
+        <a href="/">Login User</a>
+    </div>
+
+</body>
+
+</html>

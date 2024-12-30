@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-spacing: 0;
+        }
+
+        td {
+            padding: 12px;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        input[type="submit"] {
+            background-color: #e74c3c;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c0392b;
+        }
+
+        .button-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .button-link:hover {
+            background-color: #c0392b;
+        }
+
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Add New Blog</h2>
+        <form action="/insertdata" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <table>
+                    <tr>
+                        <td>Title:</td>
+                        <td><input type="text" name="title" required></td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td><input type="text" name="description" required></td>
+                    </tr>
+                    <tr>
+                        <td>Image:</td>
+                        <td><input type="file" name="image" required></td>
+                    </tr>
+                </table>
+            </div>
+            <input type="submit" value="Add Blog">
+        </form>
+        <a href="/viewblog" class="button-link">View Blogs</a>
+    </div>
+
+</body>
+
+</html>
