@@ -4,317 +4,464 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Discover the latest trends in women's fashion with Libazz. Shop shoes, bags, and more at unbeatable prices!">
-    <meta name="keywords" content="fashion, women's clothing, shoes, accessories, trendy, handmade products">
-    <meta name="author" content="Libazz Fashion">
-    <title>Libazz Fashion - men's Fashion</title>
+    <link rel='stylesheet' href='https://unpkg.com/boxicons/css/boxicons.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>Document</title>
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
         }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #1a2a3a;
-            color: white;
-            padding: 20px 30px;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar h1 {
-            font-size: 1.8rem;
-            margin: 0;
-        }
-
-        .navbar a {
-            color: #ecf0f1;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-
-        .navbar a:hover {
-            color: #f39c12;
-        }
-
-        /* Sidebar */
         .sidebar {
-            height: 100%;
-            width: 250px;
             position: fixed;
-            top: 0;
             left: 0;
-            background-color: #2c3e50;
-            color: white;
-            padding-top: 40px;
-            transition: 0.3s;
+            top: 0;
+            height: 100%;
+            width: 78px;
+            background: #11101d;
+            padding: 6px 14px;
+            z-index: 99;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.open {
+            width: 250px;
+        }
+
+        .sidebar .logo-details {
+            height: 60px;
             display: flex;
-            flex-direction: column;
-            z-index: 100;
-        }
-
-        .sidebar h2 {
-            color: #fff;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .sidebar a {
-            color: #ecf0f1;
-            padding: 16px 20px;
-            text-decoration: none;
-            width: 100%;
-            text-align: left;
-            font-size: 1.2rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .sidebar a:hover {
-            background-color: #2980b9;
-        }
-
-        /* Content */
-        .content {
-            margin-left: 250px;
-            background-color: #ecf0f1;
-        }
-
-        /* Banner Section */
-        .banner {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-            padding: 60px 40px;
-            background: linear-gradient(45deg, #ff6a00, #ee0979);
-            color: white;
-            border-radius: 10px;
-            background-image: url('/uploads/assets/img/benner.jpg');
-            background-size: cover;
-            height: 600px;
-            padding: 100px;
-        }
-
-        .banner span {
-            color: #000;
             align-items: center;
-            font-size: 18px;
-            font-weight: bold;
-
+            position: relative;
         }
 
-        .banner h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            font-weight: bold;
+        .sidebar .logo-details .icon {
+            opacity: 0;
+            transition: all 0.5s ease;
         }
 
-        .banner p {
-            margin: 15px 0;
-            font-size: 1.2rem;
-            color: #474747;
+        .sidebar .logo-details .logo_name {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.5s ease;
         }
 
-        .banner button {
-            background-color: #1a2a3a;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+        .sidebar.open .logo-details .icon,
+        .sidebar.open .logo-details .logo_name {
+            opacity: 1;
         }
 
-        .banner button:hover {
-            background-color: #34495e;
-        }
-
-        /* Product Section */
-        .product-section {
+        .sidebar .logo-details #btn {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            font-size: 22px;
+            transition: all 0.4s ease;
+            font-size: 23px;
             text-align: center;
-            padding: 50px 20px;
-            background-color: white;
-
+            cursor: pointer;
+            transition: all 0.5s ease;
         }
 
-        .product-section h2 {
-            margin-bottom: 40px;
-            font-size: 2.5rem;
-            color: #2c3e50;
+        .sidebar.open .logo-details #btn {
+            text-align: right;
         }
 
-        .container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            /* Display 4 cards per row */
+        .sidebar i {
+            color: #fff;
+            height: 60px;
+            min-width: 50px;
+            font-size: 28px;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .sidebar .nav-list {
+            margin-top: 20px;
+            height: 100%;
+        }
+
+        .sidebar li {
+            position: relative;
+            margin: 8px 0;
+            list-style: none;
+        }
+
+        .sidebar li .tooltip {
+            position: absolute;
+            top: -20px;
+            left: calc(100% + 15px);
+            z-index: 3;
+            background: #fff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 400;
+            opacity: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            transition: 0s;
+        }
+
+        .sidebar li:hover .tooltip {
+            opacity: 1;
+            pointer-events: auto;
+            transition: all 0.4s ease;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .sidebar.open li .tooltip {
+            display: none;
+        }
+
+        .sidebar input {
+            font-size: 15px;
+            color: #fff;
+            font-weight: 400;
+            outline: none;
+            height: 50px;
+            width: 100%;
+            width: 50px;
+            border: none;
+            border-radius: 12px;
+            transition: all 0.5s ease;
+            background: #1d1b31;
+        }
+
+        .sidebar.open input {
+            padding: 0 20px 0 50px;
+            width: 100%;
+        }
+
+        .sidebar .bx-search {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            font-size: 22px;
+            background: #1d1b31;
+            color: #fff;
+        }
+
+        .sidebar.open .bx-search:hover {
+            background: #1d1b31;
+            color: #fff;
+        }
+
+        .sidebar .bx-search:hover {
+            background: #fff;
+            color: #11101d;
+        }
+
+        .sidebar li a {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            border-radius: 12px;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            background: #11101d;
+        }
+
+        .sidebar li a:hover {
+            background: #fff;
+        }
+
+        .sidebar li a .links_name {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 400;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.4s;
+        }
+
+        .sidebar.open li a .links_name {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .sidebar li a:hover .links_name,
+        .sidebar li a:hover i {
+            transition: all 0.5s ease;
+            color: #11101d;
+        }
+
+        .sidebar li i {
+            height: 50px;
+            line-height: 50px;
+            font-size: 18px;
+            border-radius: 12px;
+        }
+
+        .sidebar li.profile {
+            position: fixed;
+            height: 60px;
+            width: 78px;
+            left: 0;
+            bottom: -8px;
+            padding: 10px 14px;
+            background: #1d1b31;
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+
+        .sidebar.open li.profile {
+            width: 250px;
+        }
+
+        .sidebar li .profile-details {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .sidebar li.profile .name,
+        .sidebar li.profile .job {
+            font-size: 15px;
+            font-weight: 400;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .sidebar li.profile .job {
+            font-size: 12px;
+        }
+
+        .sidebar .profile #log_out {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background: #1d1b31;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 0px;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.open .profile #log_out {
+            width: 50px;
+            background: none;
+        }
+
+        .home-section {
+            position: relative;
+            background: #e4e9f7;
+            min-height: 100vh;
+            top: 0;
+            left: 78px;
+            width: calc(100% - 78px);
+            transition: all 0.5s ease;
+            z-index: 2;
+        }
+
+        .sidebar.open~.home-section {
+            left: 250px;
+            width: calc(100% - 250px);
+        }
+
+        .home-section .text {
+            color: #11101d;
+            font-size: 30px;
+            font-weight: 600;
+            margin: 20px;
+            text-align: center;
+        }
+
+
+
+        .home-section {
+            position: relative;
+            background: #e4e9f7;
+            min-height: 100vh;
+            top: 0;
+            left: 78px;
+            width: calc(100% - 78px);
+            transition: all 0.5s ease;
+            padding: 20px;
+        }
+
+        .prodect {
+            display: flex;
+            flex-wrap: wrap;
             gap: 20px;
-            padding: 0 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+            margin-bottom: 20px;
         }
 
         .card {
             background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            transition: 0.3s;
-            border: 1px solid #ddd;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
         }
 
-        .card img {
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img-top {
             width: 100%;
-            height: auto;
+            height: 180px;
             object-fit: cover;
-            border-bottom: 2px solid #ddd;
+            border-bottom: 1px solid #f1f1f1;
         }
 
         .card-body {
             padding: 15px;
-            text-align: center;
+            flex-grow: 1;
         }
 
         .card-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 18px;
             color: #333;
+            margin-bottom: 10px;
+            text-align: center;
             font-weight: bold;
         }
 
-        .card-text {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            color: #777;
-        }
-
-        .btn {
-            background-color: #ff6a00;
-            color: #fff;
-            padding: 10px 15px;
+        .card-body a {
             text-decoration: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #ee0979;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #2c3e50;
+            background-color: #477bb3;
             color: white;
+            padding: 10px 20px;
             text-align: center;
-            padding: 20px 0;
-            margin-top: 50px;
+            border-radius: 5px;
+            display: inline-block;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
         }
 
-        footer a {
-            color: #ff6a00;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
+        .card-body a:hover {
+            background-color: #306297;
         }
     </style>
+
 </head>
 
 <body>
 
-    <!-- Sidebar -->
+
     <div class="sidebar">
-        <h2>Libazz Fashion</h2>
-        <a href="/addblog">Add Blog</a>
-        <a href="/viewblog">View Blog</a>
-        <a href="/logout">Logout</a>
+        <div class="logo-details">
+            <i class='bx bxl-codepen icon'></i>
+            <div class="logo_name">SideMenu</div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+            <li>
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="Search...">
+                <span class="tooltip">Search</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="/addblog">
+                    <i class='bx bx-cart-add'></i>
+                    <span class="links_name">Add Blog</span>
+                </a>
+                <span class="tooltip">Add Blog</span>
+            </li>
+            <li>
+                <a href="/viewblog">
+                    <i class="fa-solid fa-eye"></i>
+                    <span class="links_name">View Blog</span>
+                </a>
+                <span class="tooltip">View Blog</span>
+            </li>
+
+            <li class="profile">
+                <div class="profile-details">
+                    <i class='bx bx-export'></i>
+                    <div class="name_job">
+                        <div class="name">Logout</div>
+                    </div>
+                </div>
+                <a href="/logout"><i class='bx bx-log-out' id="log_out"></i></a>
+            </li>
+        </ul>
     </div>
 
-    <!-- Content -->
-    <div class="content">
-        <!-- Navbar -->
-        <div class="navbar">
-            <h1>Libazz Fashion</h1>
-            <div>
-                <a href="/logout">Logout</a>
-            </div>
+    <section class="home-section">
+        <div class="text">Dashboard</div>
+
+        <div class="prodect">
+
+            <% blogs.map((val)=>{ %>
+                <div class="col">
+                    <div class="card shadow">
+                        <img src="<%= val.image %>" class="card-img-top" alt="<%= val.title %>">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= val.title %>
+                            </h5>
+
+                            <a href="/readmore?readId=<%= val._id %>" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+
         </div>
 
-        <!-- Banner Section -->
-        <div class="banner">
-            <div>
-                <span>20% Off New Trade</span>
-                <h1>MEN FASHION</h1>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                <button>Shop Now</button>
-            </div>
-        </div>
+    </section>
 
-        <!-- Product Section -->
-        <div class="product-section">
-            <h2>Our Best Blogs</h2>
-            <div class="container">
-                <div class="card">
-                    <img src="/uploads/assets/img/01.jpg" alt="Blog Image">
-                    <div class="card-body">
-                        <h3 class="card-title">Blog Title</h3>
-                        <p class="card-text">$29.00</p>
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/uploads/assets/img/02.jpg" alt="Blog Image">
-                    <div class="card-body">
-                        <h3 class="card-title">Blog Title</h3>
-                        <p class="card-text">$29.00</p>
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/uploads/assets/img/03.jpg" alt="Blog Image">
-                    <div class="card-body">
-                        <h3 class="card-title">Blog Title</h3>
-                        <p class="card-text">$29.00</p>
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/uploads/assets/img/04.jpg" alt="Blog Image">
-                    <div class="card-body">
-                        <h3 class="card-title">Blog Title</h3>
-                        <p class="card-text">$29.00</p>
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-                </div>
-
-                
-
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2024 Libazz Fashion. All Rights Reserved.</p>
-            <a href="/privacy-policy">Privacy Policy</a> |
-            <a href="/terms">Terms & Conditions</a>
-        </footer>
-    </div>
 
 </body>
+<script>
+    let sidebar = document.querySelector(".sidebar");
+    let closeBtn = document.querySelector("#btn");
+    let searchBtn = document.querySelector(".bx-search");
+
+    closeBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        menuBtnChange();
+    });
+
+    searchBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        menuBtnChange();
+    });
+
+    function menuBtnChange() {
+        if (sidebar.classList.contains("open")) {
+            closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+        } else {
+            closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    }
+
+</script>
 
 </html>

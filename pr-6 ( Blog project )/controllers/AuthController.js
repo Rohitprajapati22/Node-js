@@ -29,11 +29,19 @@ const registerUser = async (req, res) => {
 };
 
 // Dashboard Page
-const dashboardPage = (req, res) => {
-    if (!req.cookies.auth) {
-        return res.redirect('/');
+const dashboardPage = async (req, res) => {
+    try {
+        if (!req.cookies.auth) {
+            return res.redirect('/');
+        }
+        const blogs = await Blog.find({});
+        return res.render('dashboard', { blogs });
+
+    } catch (err) {
+        console.log(err);
+        return false
+
     }
-    return res.render('dashboard');
 };
 
 // Add Blog Page
@@ -50,7 +58,7 @@ const insertData = async (req, res) => {
             image: req.file.path,
         });
         console.log('Blog inserted');
-        return res.redirect('/viewblog');
+        return res.redirect('/dashboard');
     } catch (err) {
         console.error(err);
         return false
@@ -69,6 +77,19 @@ const viewBlog = async (req, res) => {
         return false
     }
 };
+
+const readMore = async (req, res) => {
+    try {
+
+        const readid = req.query.readId;
+        const readBlog = await Blog.findById(readid);
+        return res.render('readmore', { readBlog });
+
+    } catch (err) {
+        console.error(err);
+        return false
+    }
+}
 
 
 const deleteUser = async (req, res) => {
@@ -99,22 +120,19 @@ const deleteUser = async (req, res) => {
 
 
 
-
+//editeblog
 const editBlog = async (req, res) => {
     try {
         const editId = req.query.editId;
-
         if (!editId) {
             console.log("No editId provided");
             return false
         }
-
         const single = await Blog.findById(editId);
         if (!single) {
             console.log("Blog not found");
             return false
         }
-
         return res.render('editblog', { single });
     } catch (err) {
         console.log(err);
@@ -124,7 +142,7 @@ const editBlog = async (req, res) => {
 
 
 
-
+// updateblog
 const updateBlog = async (req, res) => {
     try {
         const { editid, title, description } = req.body;
@@ -141,12 +159,11 @@ const updateBlog = async (req, res) => {
         }
 
         if (req.file) {
-            // Delete the old image
+
             if (single.image && fs.existsSync(single.image)) {
                 fs.unlinkSync(single.image);
             }
 
-            // Update the blog with the new image
             await Blog.findByIdAndUpdate(editid, {
                 title,
                 description,
@@ -204,5 +221,6 @@ module.exports = {
     editBlog,
     updateBlog,
     loginUser,
-    logout,
+    logout, readMore
+
 };
