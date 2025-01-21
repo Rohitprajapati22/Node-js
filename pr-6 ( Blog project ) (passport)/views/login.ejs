@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login biasa light.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "poppins", sans-serif;
+        }
+
+
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #2c3338;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .wrapper h1 {
+            font-size: 36px;
+            text-align: center;
+            color: #A3A2A2;
+        }
+
+        .wrapper .input-box {
+            color: #A3A2A2;
+            width: 100%;
+            height: 50px;
+            margin: 30px 0;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 100%;
+            background: #434A52;
+            border: none;
+            outline: none;
+            border: 2px solid rgba(78, 78, 78, 0.2);
+            border-radius: 10px;
+            font-size: 16px;
+            color: #000000;
+            padding: 20px 40px 20px 20px;
+        }
+
+        .input-box input::placeholder {
+            color: #A3A2A2;
+        }
+
+        .input-box i {
+            position: relative;
+            left: 90%;
+            bottom: 70%;
+            font-size: 20px;
+        }
+
+        .wrapper .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14.5px;
+            margin: -15px 0 15px;
+        }
+
+      
+        .remember-forgot p {
+            color: #BCBABA;
+            text-decoration: none;
+            position: relative;
+            left: 90px;
+        }
+
+        .wrapper .btn {
+            width: 100%;
+            height: 45px;
+            background-color: #ea4c88;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            cursor: pointer;
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .wrapper .register-link {
+            font-size: 14.5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .register-link p a {
+            color: #BCBABA;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-link p a:hover {
+            text-decoration: underline;
+        }
+
+        .remember-forgot label {
+            color: #676767;
+
+        }
+
+        .register-link p {
+            color: #676767;
+        }
+
+        .wrapper .btn:hover {
+            color: #fff;
+            background-color: #3b4148;
+        }
+
+        html {
+            filter: invert(1) hue-rotate(180deg);
+        }
+
+        .forgot-password {
+            margin: 15px 0;
+            color: #BCBABA;
+            text-decoration: none;
+            position: relative;
+            left: 90px;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Login Form -->
+        <div class="wrapper" id="loginForm">
+            <form action="/loginuser" method="post">
+                <h1>Log in</h1>
+                <div class="input-box">
+                    <input type="email" name="email" id="email" placeholder="Useremail" required>
+                    <i class='bx bxs-envelope'></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+
+                <div class="remember-forgot">
+                    <p class="forgot-password" onclick="showForgotPasswordForm()">Forgot Password?</p>
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+
+                <div class="register-link">
+                    <p>Don't have an account? <a href="/register">Sign up</a></p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div class="wrapper hidden" id="forgotPasswordForm">
+            <form action="/forgotpassword" method="post">
+                <h1>Forgot Password</h1>
+                <div class="input-box">
+                    <input type="email" name="email" id="email" placeholder="Useremail" required>
+                    <i class='bx bxs-envelope'></i>
+                </div>
+                <button type="submit" class="btn">Send Reset Link</button>
+            </form>
+            <p class="forgot-password" onclick="showLoginForm()">Back to Login</p>
+        </div>
+    </div>
+
+
+
+    <script>
+
+        function showForgotPasswordForm() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('forgotPasswordForm').classList.remove('hidden');
+        }
+
+        function showLoginForm() {
+            document.getElementById('forgotPasswordForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+        }
+
+
+    </script>
+
+</body>
+
+</html>

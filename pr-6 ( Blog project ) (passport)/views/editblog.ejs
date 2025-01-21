@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Blog</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 40px 20px;
+        }
+
+        /* Centered Form Styling */
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            margin-bottom: 30px;
+            font-size: 2rem;
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container input,
+        .form-container textarea,
+        .form-container button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-container textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        .form-container input[type="file"] {
+            padding: 5px;
+        }
+
+        .form-container button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .form-container button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .form-container a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .form-container a:hover {
+            background-color: #c0392b;
+        }
+
+        .form-container img {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+    
+    </style>
+</head>
+
+<body>
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <h2>Edit Blog</h2>
+        <form action="/updateblog" method="POST" enctype="multipart/form-data">
+            <!-- Hidden Input for Blog ID -->
+            <input type="hidden" name="editid" value="<%= single._id %>">
+
+            <!-- Title Input -->
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" value="<%= single.title %>" required>
+
+            <!-- Description Textarea -->
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" required><%= single.description %></textarea>
+
+            <!-- Current Image Display -->
+            <label>Current Image:</label>
+            <div>
+                <img src="<%= single.image %>" alt="Current Blog Image">
+            </div>
+
+            <!-- New Image Upload -->
+            <label for="image">Upload New Image:</label>
+            <input type="file" name="image" id="image">
+
+            <!-- Submit Button -->
+            <button type="submit">Update Blog</button>
+        </form>
+
+        <!-- Back to Blogs Link -->
+        <a href="/viewblog">Back to Blogs</a>
+    </div>
+
+</body>
+
+</html>
