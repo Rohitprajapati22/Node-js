@@ -30,7 +30,7 @@ const fileupload = multer({ storage: st }).single('image');
 routes.get('/', loginPage);
 routes.get('/register', registerPage);
 routes.post('/registeruser', registerUser);
-routes.get('/dashboard', dashboardPage);
+routes.get('/dashboard',passport.checkUser, dashboardPage);
 routes.get('/addblog', addBlog);
 routes.post('/insertdata', fileupload, insertData);
 routes.get('/viewblog', viewBlog);
