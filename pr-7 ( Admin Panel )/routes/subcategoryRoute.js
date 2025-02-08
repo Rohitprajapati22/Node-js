@@ -2,11 +2,13 @@ const express = require('express');
 
 const routes = express.Router()
 
+const passport = require('passport')
+
 const { viewSubcategory, addSubcategory, insertSubcategory, deleteSubcategory, editSubcategory, updateSubcategory, changeStatus } = require('../controllers/SubcategoryController');
 
 
-routes.get('/', viewSubcategory)
-routes.get('/addsubcategory', addSubcategory)
+routes.get('/',passport.checkUser, viewSubcategory)
+routes.get('/addsubcategory',passport.checkUser, addSubcategory)
 routes.post('/insertsubcategory', insertSubcategory)
 routes.get('/deletesubcategory', deleteSubcategory)
 routes.get('/editsubcategory', editSubcategory)

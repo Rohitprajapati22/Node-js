@@ -2,6 +2,9 @@ const express = require('express');
 
 const routes = express.Router()
 
+const passport = require('passport')
+
+
 const { viewProduct, addProduct,insertProduct,ajaxcategorywiseRecord, changeStatus, deleteProduct, editeProduct, updateProduct } = require('../controllers/ProductController');
 
 
@@ -20,8 +23,8 @@ const st = multer.diskStorage({
 const upload = multer({ storage: st }).single('image');
 
 
-routes.get('/', viewProduct)
-routes.get('/addproduct',addProduct)
+routes.get('/',passport.checkUser, viewProduct)
+routes.get('/addproduct',passport.checkUser,addProduct)
 routes.get('/ajaxcategorywiserecord',ajaxcategorywiseRecord)
 routes.post('/insertproduct',upload,insertProduct)
 routes.get('/deleteproduct',deleteProduct)

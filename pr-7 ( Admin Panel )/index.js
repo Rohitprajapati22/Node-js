@@ -6,18 +6,20 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
+const path = require('path');
 
 
 const databese = require('./config/db')
 databese()
 
 
-const path = require('path');
-
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 const cookieParser = require('cookie-parser');
-app.use(cookieParser());    
+app.use(cookieParser());
 
 //authentication start passportjs
 const passport = require('passport');
@@ -56,8 +58,10 @@ app.use(function (req, res, next) {
 
 
 app.use(express.urlencoded());
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
-app.use('/uploads', express.static('uploads'));
+
+
+
+
 app.use('/', require('./routes/indexRoute'));
 
 app.listen(port, (err) => {

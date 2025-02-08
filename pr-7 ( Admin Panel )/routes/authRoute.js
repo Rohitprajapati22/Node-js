@@ -8,16 +8,16 @@ const { loginPage, registerPage, registerUser, loginUser, deshboardPage, logout,
 
 
 routes.get('/', loginPage);
-routes.get('/register', registerPage)
+routes.get('/register',passport.checkUser, registerPage)
 routes.post('/registeruser', registerUser)
 routes.post('/loginuser', passport.authenticate('local', { failureRedirect: '/' }), loginUser)
 
-routes.get('/deshboard', deshboardPage)
+routes.get('/deshboard',passport.checkUser, deshboardPage)
 routes.get('/logout', logout)
 
 //forgot password
-routes.get('/otp', otpPage)
-routes.get('/newpassword', newpasswordPage)
+routes.get('/otp',passport.checkUser, otpPage)
+routes.get('/newpassword',passport.checkUser, newpasswordPage)
 routes.post('/forgotpassword', forgotPassword)
 routes.post('/userotp', userOtp)
 routes.post('/usernewpassword', usernewPassword)

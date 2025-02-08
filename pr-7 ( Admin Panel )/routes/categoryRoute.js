@@ -1,12 +1,12 @@
 const express = require('express');
 
 const routes = express.Router()
-
+const passport = require('passport');
 const { viewCategory, addCategory, insertCategory, deleteCategory, editCategory, updateCategory, changeStatus } = require('../controllers/CategoryController');
 
 
-routes.get('/', viewCategory)
-routes.get('/addcategory',addCategory)
+routes.get('/',passport.checkUser, viewCategory)
+routes.get('/addcategory',passport.checkUser,addCategory)
 routes.post('/insertcategory',insertCategory)
 routes.get('/deletecategory',deleteCategory)
 routes.get('/editcategory',editCategory)
