@@ -43,7 +43,7 @@ routes.get('/readmore', readMore);
 
 // foret 
 routes.get('/otp', otpPage)
-routes.get('/newpassword', newPasswordpage);
+routes.get('/newpassword',passport.checkUser, newPasswordpage);
 routes.post('/forgotpassword', forgotPassword)
 routes.post('/verifyotp', verifyOtp);
 routes.post('/usernewpassword', usernewPassword)

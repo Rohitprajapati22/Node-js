@@ -1,0 +1,78 @@
+<%- include('../header')%>
+    <!-- [ Main Content ] start -->
+    <section class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="../dashboard/index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0)">Forms</a></li>
+                                <li class="breadcrumb-item" aria-current="page">TypeAhead</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h2 class="mb-0">Edit Category</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+
+
+
+
+
+
+            <!-- [ Main Content ] start -->
+            <div class="row">
+
+
+
+                <div class="col-lg-12">
+
+                    <% if(locals?.message?.success){ %>
+                        <div class="alert alert-success" role="alert">
+                            <strong>Success!</strong>
+                            <%= locals.message.success %>
+                        </div>
+                        <% } %>
+                            <!-- [ form-element ] start -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="/category/updatecategory" method="post">
+                                        <input type="hidden" name="editid" value="<%= single?.id %>">
+                                        <div class="form-group row mb-0">
+                                            <label class="col-form-label col-lg-3 col-sm-12 text-lg-end">Edit
+                                                Category</label>
+                                            <div class="col-lg-5 col-md-9 col-sm-12">
+                                                <div class="typeahead">
+                                                    <input class="form-control" value="<%= single?.category %>" name="category" type="text"
+                                                        placeholder="Edit Category">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-end p-4 pb-sm-2">
+                                            <button type="submit"
+                                                class="btn btn-primary d-inline-flex align-item-center"><i
+                                                    class="ti ti-plus f-18"></i>Ubdate</button>
+                                            </button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                </div>
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </section>
+    <!-- [ Main Content ] end -->
+
+
+    <%- include('../footer')%>

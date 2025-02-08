@@ -1,0 +1,117 @@
+<%- include('../header')%>
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="../dashboard/index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0)">Customer</a></li>
+                                <li class="breadcrumb-item" aria-current="page">List</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h2 class="mb-0">View Sub Category</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- [ sample-page ] start -->
+                <div class="col-sm-12">
+
+                    <% if(locals?.message?.delete){%>
+                        <div class="alert alert-danger" role="alert">
+                            <%= locals.message.delete %>
+                        </div>
+                        <%}%>
+
+
+
+                            <div class="card table-card">
+
+                                <div class="card-body">
+
+                                    <div class="table-responsive">
+                                        <table class="table table-hover" id="pc-dt-simple">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Category Name</th>
+                                                    <th>Sub Category</th>
+                                                    <th>Status</th>
+                                                    <th class="text-center">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <% subcategory.map((subcat,index)=>{ %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= ++index %>
+                                                        </td>
+                                                        <td>
+                                                            <h6 class="mb-0">
+                                                                <%= subcat?.categoryId?.category %>
+                                                            </h6>
+                                                        </td>
+                                                        <td>
+                                                            <h6 class="mb-0">
+                                                                <%= subcat?.subcategory %>
+                                                            </h6>
+                                                        </td>
+                                                        <td>
+                                                            <% if(subcat?.status==="active" ) { %>
+                                                                <a href="/subcategory/changestatus?id=<%= subcat.id %>&status=deactive"
+                                                                    class="badge bg-light-success f-12">
+                                                                    <%= subcat?.status %>
+                                                                </a>
+                                                                <% }else{%>
+                                                                    <a href="/subcategory/changestatus?id=<%= subcat.id %>&status=active"
+                                                                        class="badge bg-light-danger f-12">
+                                                                        <%= subcat?.status %>
+                                                                    </a>
+                                                                    <% } %>
+                                                        </td>
+
+                                                        <td class="text-center">
+                                                            <ul class="list-inline me-auto mb-0">
+
+                                                                <li class="list-inline-item align-bottom"
+                                                                    data-bs-toggle="tooltip" title="Edit">
+                                                                    <a href="/subcategory/editsubcategory?id=<%= subcat.id %>"
+                                                                        class="avtar avtar-xs btn-link-success btn-pc-default">
+                                                                        <i class="ti ti-edit-circle f-18"></i></a>
+                                                                </li>
+
+                                                                <li class="list-inline-item align-bottom"
+                                                                    data-bs-toggle="tooltip" title="Delete">
+                                                                    <a href="/subcategory/deletesubcategory?id=<%= subcat.id %>"
+                                                                        class="avtar avtar-xs btn-link-danger btn-pc-default">
+                                                                        <i class="ti ti-trash f-18"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                    <%})%>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+                <!-- [ sample-page ] end -->
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <%- include('../footer')%>
