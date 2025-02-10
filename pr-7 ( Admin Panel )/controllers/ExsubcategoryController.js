@@ -96,6 +96,7 @@ const editExsubcategory = async (req, res) => {
     }
 }
 
+
 const updateExsubcategory = async (req, res) => {
     try {
         const { editid, category, subcategory , exsubcategory } = req.body;

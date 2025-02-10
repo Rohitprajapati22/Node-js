@@ -49,10 +49,10 @@ const insertProduct = async (req, res) => {
             product: product,
             price: price,
             description: description,
-            image: req.file.path,
+            image: req.file ? req.file.path : ''
         })
         req.flash('success', "Exsubcategory successfully add");
-        return res.redirect('/product/')
+        return res.redirect('/product')
     } catch (err) {
         console.log(err);
         return false;
@@ -64,31 +64,26 @@ const insertProduct = async (req, res) => {
 
 const ajaxcategorywiseRecord = async (req, res) => {
     try {
-        let subcategoryid = req.query.categoryId
-        let exsubcategorydeta = await Subcategory.find({ subcategoryId: subcategoryid, status: 'active' }).populate('categoryId').populate('subcategoryId')
-
+        let subcategoryid = req.query.subcategoryId;
+        let exsubcategorydeta = await Exsubcategory.find({ subcategoryId: subcategoryid, status: 'active' }).populate('categoryId').populate('subcategoryId')
         return res.status(200).send({
             status: true,
             message: "Record Found",
+            
             exsubcategory: exsubcategorydeta
-
         })
-
     } catch (err) {
         console.log(err)
         return false
     }
 }
 
-
-
-
 const deleteProduct = async (req, res) => {
     try {
         const id = req.query.id;
         await Product.findByIdAndDelete(id)
         req.flash('delete', "product successfully delete");
-        return res.redirect('/product/')
+        return res.redirect('/product')
     } catch (err) {
         console.log(err)
         return false
@@ -133,7 +128,7 @@ const changeStatus = async (req, res) => {
             })
         }
         req.flash('success', "product sucess fulle ubdate");
-        return res.redirect('/product/')
+        return res.redirect('/product')
     } catch (err) {
         console.log(err);
         return false;
@@ -164,7 +159,7 @@ const updateProduct = async (req, res) => {
         });
 
         req.flash('success', "Product successfully updated!");
-        return res.redirect('/product/');
+        return res.redirect('/product');
     } catch (err) {
         console.error(err);
         res.status(500).send("Server Error");
