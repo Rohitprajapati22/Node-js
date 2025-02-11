@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libazz Fashion - Blog</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 15px 30px;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #e74c3c;
+        }
+
+        /* Container for Cards */
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Card Design */
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .action-btns a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .action-btns a:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>Libazz Fashion</h1>
+        <div>
+            <a href="/dashboard">Home</a>
+            <a href="/addblog">Add Blog</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <!-- Container for Blogs -->
+    <div class="container">
+        <div class="row">
+            <% record.map((val) => { %>
+                <div class="col">
+                    <div class="card shadow">
+                        <img src="<%= val.image %>" class="card-img-top" alt="<%= val.title %>">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= val.title %></h5>
+                            <h5 class="card-title"><%= val.price %></h5>
+                            <h5 class="card-title"><%= val.qty %></h5>
+                            <h5></h5>
+                            <p class="card-text"><strong>Description:</strong> <%= val.description %></p>
+                            <div class="action-btns">
+                                <a href="/edit?editId=<%= val._id %>" class="btn btn-primary">Edit</a>
+                                <a href="/delete?id=<%= val._id %>" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+</body>
+
+</html>

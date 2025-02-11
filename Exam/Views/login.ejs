@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login | Mantis Bootstrap 5 Admin Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+            background-color: #f4f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .auth-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .auth-header img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        .auth-footer {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .auth-footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <h3>Login</h3>
+        </div>
+        <form action="/loginuser" method="post">
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter your password">
+            </div>
+            <button type="submit" class="btn-primary">Login</button>
+        </form>
+        <div class="auth-footer">
+            <p><a href="#">Forgot Password?</a> | <a href="/register">Register</a></p>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+<!-- forgot password start -->
+<!-- 
+<div class="card my-5 hidden" id="forgotPasswordForm">
+    <form action="/forgotpassword" method="post">
+        <div class="card-body">
+
+            <div class="form-group mb-3">
+                <label class="form-label">Email Address</label>
+                <input type="email" name="useremail" class="form-control" placeholder="Email Address">
+            </div>
+
+            <div class="d-flex mt-1 justify-content-between">
+                <div class="form-check">
+                    <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="">
+                    <label class="form-check-label text-muted" for="customCheckc1">Keep me sign
+                        in</label>
+                </div>
+            </div>
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary">Forgot Password?</button>
+                <p style="text-align: center; margin: 15px 0; font-size: 15px; font-weight: 600;"
+                    class="text-secondary f-w-400" onclick="showLoginForm()">Back to Login</p>
+            </div>
+            <div class="saprator mt-3">
+                <span>Login with</span>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="d-grid">
+                        <button type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
+                            <img src="../assets/images/authentication/google.svg" alt="img"> <span
+                                class="d-none d-sm-inline-block"> Google</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="d-grid">
+                        <button type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
+                            <img src="../assets/images/authentication/twitter.svg" alt="img"> <span
+                                class="d-none d-sm-inline-block"> Twitter</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="d-grid">
+                        <button type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
+                            <img src="../assets/images/authentication/facebook.svg" alt="img"> <span
+                                class="d-none d-sm-inline-block"> Facebook</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div> -->
+
+<!-- forgot password end -->
+
+
+
+
+<!-- [Body] end -->
+
+<!-- </html> -->

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <section class="pc-container">
+        <div class="pc-content">
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="../dashboard/index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
+                                <li class="breadcrumb-item" aria-current="page">TypeAhead</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-12">
+                            <h2 class="mb-0">Add Product</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <% if(locals?.message?.success){ %>
+                        <div class="alert alert-success" role="alert">
+                            <strong>Success!</strong>
+                            <%= locals.message.success %>
+                        </div>
+                        <% } %>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="/product/insertproduct" method="post" enctype="multipart/form-data">
+
+                                        
+
+                                        <div class="form-group row mb-3">
+                                            <label class="col-form-label col-lg-3 text-lg-end">Product</label>
+                                            <div class="col-lg-5">
+                                                <input class="form-control" name="product" type="text"
+                                                    placeholder="Product">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+                                            <label class="col-form-label col-lg-3 text-lg-end">Price</label>
+                                            <div class="col-lg-5">
+                                                <input class="form-control" name="price" type="number"
+                                                    placeholder="Price">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+                                            <label class="col-form-label col-lg-3 text-lg-end">Description</label>
+                                            <div class="col-lg-5">
+                                                <input class="form-control" name="description" type="text"
+                                                    placeholder="Description">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+                                            <label class="col-form-label col-lg-3 text-lg-end">Image</label>
+                                            <div class="col-lg-5">
+                                                <input class="form-control" name="image" type="file">
+                                            </div>
+                                        </div>
+
+                                        <div class="text-end p-4 pb-sm-2">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="ti ti-plus f-18"></i> Submit
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function categoryRecord() {
+            let categoryId = document.getElementById('category').value;
+            $.ajax({
+                type: 'GET',
+                url: `/exsubcategory/ajaxcategorywiserecord?categoryId=${categoryId}`,
+                success: function (res) {
+                    let subcategories = res.subcategory;
+                    let options = '<option value="" disabled selected>-- Select SubCategory --</option>';
+
+                    subcategories.forEach((subcategory) => {
+                        options += `<option value="${subcategory._id}">${subcategory.subcategory}</option>`;
+                    });
+
+                    document.getElementById('subcategory').innerHTML = options;
+                },
+                error: function (err) {
+                    console.error("Error fetching subcategories:", err);
+                }
+            });
+        }
+
+        function subcategoryRecord() {
+            let subcategoryId = document.getElementById('subcategory').value;
+            $.ajax({
+                type: 'GET',
+                url: `/product/ajaxcategorywiserecord?subcategoryId=${subcategoryId}`,
+                success: function (res) {
+                    let exsubcategories = res.exsubcategory;
+                    let options = '<option value="">-- Select ExSubCategory --</option>';
+
+                    exsubcategories.forEach((exsub) => {
+                        options += `<option value="${exsub._id}">${exsub.exsubcategory}</option>`;
+                    });
+
+                    document.getElementById('exsubcategory').innerHTML = options;
+                },
+                error: function (err) {
+                    console.error("Error fetching exsubcategories:", err);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

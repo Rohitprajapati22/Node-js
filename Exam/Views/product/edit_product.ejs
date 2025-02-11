@@ -1,0 +1,228 @@
+<%- include('../header')%>
+    <!-- [ Main Content ] start -->
+    <section class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="../dashboard/index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0)">Forms</a></li>
+                                <li class="breadcrumb-item" aria-current="page">TypeAhead</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h2 class="mb-0">Edit Product</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+
+
+
+
+
+
+            <!-- [ Main Content ] start -->
+            <div class="row">
+
+
+
+                <div class="col-lg-12">
+
+                    <% if(locals?.message?.success){ %>
+                        <div class="alert alert-success" role="alert">
+                            <strong>Success!</strong>
+                            <%= locals.message.success %>
+                        </div>
+                        <% } %>
+                            <!-- [ form-element ] start -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="/product/updateproduct" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="editid" value="<%= single?.id %>">
+                                        <div class="form-group row my-3">
+                                            <label
+                                                class="col-form-label col-lg-3 col-sm-12 text-lg-end">Category</label>
+                                            <div class="col-lg-5 col-md-9 col-sm-12">
+                                                <div class="typeahead">
+                                                    <select name="category" id="category" class="form-control"
+                                                        onchange="categoryRecord() ">
+                                                        <option value="">-- Select Category
+                                                            --</option>
+                                                        <% category.map((val)=>{ %>
+                                                            <% if(val?.category==single?.categoryId?.category){ %>
+                                                                <option value="<%= val?.id %>" selected>
+                                                                    <%= val.category %>
+                                                                </option>
+
+                                                                <% }else{%>
+                                                                    <option value="<%= val?.id %>">
+                                                                        <%= val.category %>
+                                                                    </option>
+                                                                    <% } %>
+
+                                                                        <% }) %>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row my-3">
+                                            <label class="col-form-label col-lg-3 col-sm-12 text-lg-end">Sub
+                                                Category</label>
+                                            <div class="col-lg-5 col-md-9 col-sm-12">
+                                                <div class="typeahead">
+                                                    <select name="subcategory" id="subcategory" onchange="subcategoryRecord()"  class="form-control">
+                                                        <option value="">-- Select Subcategory --</option>
+
+                                                        <% subcategory.map((val)=> { %>
+                                                            <% if (val?.subcategory==single?.subcategoryId?.subcategory)
+                                                                { %>
+                                                                <option value="<%= val?.id %>" selected>
+                                                                    <%= val.subcategory %>
+                                                                </option>
+                                                                <% } %>
+                                                                    <% }) %>
+
+
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row my-3">
+                                            <label
+                                                class="col-form-label col-lg-3 col-sm-12 text-lg-end">ExSubCategory</label>
+                                            <div class="col-lg-5 col-md-9 col-sm-12">
+                                                <div class="typeahead">
+                                                    <select name="exsubcategory" id="exsubcategory"
+                                                        class="form-control">
+                                                        
+                                                        <% exsubcategory.map((val)=> { %>
+                                                            <% if (val?.exsubcategory==single?.exsubcategoryId.exsubcategory)
+                                                                { %>
+                                                                <option value="<%= val?.id %>" selected>
+                                                                    <%= val.exsubcategory %>
+                                                                </option>
+                                                                <% } %>
+                                                                    <% }) %>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row mb-3">
+                                            <label class="col-form-label col-lg-3 col-sm-12 text-lg-end">Product</label>
+                                            <div class="col-lg-5 col-md-9 col-sm-12">
+                                                <div class="typeahead">
+                                                    <input class="form-control" name="product" type="text" value="<%= single?.product %>"
+                                                        placeholder="product">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+                                            <label class="col-form-label col-lg-3 col-sm-12 text-lg-end">Price</label>
+                                            <div class="col-lg-5 col-md-9 col-sm-12">
+                                                <div class="typeahead">
+                                                    <input class="form-control" name="price" type="number" value="<%= single?.price %>"
+                                                        placeholder="Price">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+                                            <label
+                                                class="col-form-label col-lg-3 col-sm-12 text-lg-end">Description</label>
+                                            <div class="col-lg-5 col-md-9 col-sm-12">
+                                                <div class="typeahead">
+                                                    <input class="form-control" name="description" type="text" value="<%= single?.description %>"
+                                                        placeholder="Description">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+                                            <label class="col-form-label col-lg-3 col-sm-12 text-lg-end">Imge</label>
+                                            <div class="col-lg-5 col-md-9 col-sm-12">
+                                                <div class="typeahead">
+                                                    <input class="form-control" name="image" type="file">
+                                                    <img src="<%= single.image %>"  width="100">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-end p-4 pb-sm-2">
+                                            <button type="submit"
+                                                class="btn btn-primary d-inline-flex align-item-center"><i
+                                                    class="ti ti-plus f-18"></i>Submit</button>
+                                            </button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                </div>
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </section>
+    <!-- [ Main Content ] end -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        const categoryRecord = () => {
+            let categoryId = document.getElementById('category').value;
+
+            $.ajax({
+                type: 'GET',
+                url: `/exsubcategory/ajaxcategorywiserecord?categoryId=${categoryId}`,
+                success: function (res) {
+                    let subcategories = res.subcategory; // Corrected variable name
+                    let options = `<option value="" disabled selected>-- Select SubCategory --</option>`;
+
+                    subcategories.forEach((subcategory) => {
+                        options += `<option value="${subcategory?._id}">${subcategory?.subcategory}</option>`;
+                    });
+
+                    document.getElementById('subcategory').innerHTML = options;
+                },
+                error: function (err) {
+                    console.error("Error fetching subcategories:", err);
+                }
+            });
+        };
+
+        function subcategoryRecord() {
+            let subcategoryId = document.getElementById('subcategory').value
+
+
+            $.ajax({
+                type: "GET",
+                url: `/product/ajaxsubcategorywisedata?subcategoryId=${subcategoryId}`,
+                success: function (res) {
+                    let subcategory = res.exsubcategory;
+                    let options = '<option value="">Select an exsubcategory</option>';
+                    subcategory.map(exsubcat => {
+                        options += `<option 
+            value="${exsubcat?._id}" 
+            ${exsubcat?._id === "<%= single?.exsubcategoryId?._id %>" ? 'selected' : ''}> ${exsubcat?.exsubcategory}
+          </option>`;
+                    });
+                    document.getElementById('exsubcategory').innerHTML = options;
+                }
+            });
+        }
+    </script>
+
+
+    <%- include('../footer')%>
