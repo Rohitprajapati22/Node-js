@@ -3,7 +3,7 @@ const routes = express.Router();
 
 
 
-const { loginPage, registerPage, registerUser, dashboardPage, loginUser, logout, insertData, addBlog, viewBlog, editBlog, updateBlog, deleteUser, readMore, otpPage, newPasswordpage, forgotPassword, verifyOtp, usernewPassword } = require('../controllers/AuthController');
+const { loginPage, registerPage, registerUser, dashboardPage, loginUser, logout, insertData, addBlog, viewBlog, editBlog, updateBlog, deleteUser, readMore, otpPage, newPasswordpage, forgotPassword, verifyOtp, usernewPassword, addToCart } = require('../controllers/AuthController');
 
 const passport = require('passport');
 
@@ -40,6 +40,7 @@ routes.post('/updateblog', fileupload, updateBlog);
 routes.post('/loginuser', passport.authenticate('local', {failureRedirect:'/'}), loginUser);
 routes.get('/logout', logout);
 routes.get('/readmore', readMore);
+routes.get('/addtocart', addToCart );
 
 
 

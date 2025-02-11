@@ -127,7 +127,6 @@
         .btn-danger:hover {
             background-color: #c0392b;
         }
-
     </style>
 </head>
 
@@ -146,16 +145,24 @@
     <!-- Container for Blogs -->
     <div class="container">
         <div class="row">
-            <% record.map((val) => { %>
+            <% record.map((val)=> { %>
                 <div class="col">
                     <div class="card shadow">
                         <img src="<%= val.image %>" class="card-img-top" alt="<%= val.title %>">
                         <div class="card-body">
-                            <h5 class="card-title"><%= val.title %></h5>
-                            <h5 class="card-title"><%= val.price %></h5>
-                            <h5 class="card-title"><%= val.qty %></h5>
-                            <h5></h5>
-                            <p class="card-text"><strong>Description:</strong> <%= val.description %></p>
+                            <h5 class="card-title"><strong>Name:</strong>
+                                <%= val.title %>
+                            </h5>
+                            <p class="card-text"><strong>Price:</strong>
+                                <%= val.price %>
+                            </p>
+                            <p class="card-text"><strong>Qty:</strong>
+                                <%= val.qty %>
+                            </p>
+
+                            <p class="card-text"><strong>Description:</strong>
+                                <%= val.description %>
+                            </p>
                             <div class="action-btns">
                                 <a href="/edit?editId=<%= val._id %>" class="btn btn-primary">Edit</a>
                                 <a href="/delete?id=<%= val._id %>" class="btn btn-danger">Delete</a>
@@ -163,7 +170,7 @@
                         </div>
                     </div>
                 </div>
-            <% }); %>
+                <% }); %>
         </div>
     </div>
 

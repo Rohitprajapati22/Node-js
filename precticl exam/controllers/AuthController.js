@@ -1,5 +1,6 @@
 const User = require('../models/UserModel')
 const Blog = require('../models/BolgModel');
+const Cart = require('../models/AddcatrModel')
 const fs = require('fs');
 
 const nodemailer = require('nodemailer')
@@ -21,22 +22,22 @@ const registerUser = async (req, res) => {
 
     try {
         await User.create({
-            name:name,
+            name: name,
             email: email,
             password: password
         });
         console.log('User registered');
         return res.redirect('/');
     } catch (err) {
-       console.log(err)
-       return false
+        console.log(err)
+        return false
     }
 };
 
 // Dashboard Page
 const dashboardPage = async (req, res) => {
     try {
-     
+
         const blogs = await Blog.find({});
         return res.render('dashboard', { blogs });
 
@@ -58,8 +59,8 @@ const insertData = async (req, res) => {
     try {
         await Blog.create({
             title: req.body.title,
-            price:req.body.price,
-            qty:req.body.qty,
+            price: req.body.price,
+            qty: req.body.qty,
             description: req.body.description,
             image: req.file.path,
         });
@@ -86,16 +87,27 @@ const viewBlog = async (req, res) => {
 
 const readMore = async (req, res) => {
     try {
-
         const readid = req.query.readId;
         const readBlog = await Blog.findById(readid);
-        return res.render('readmore', { readBlog });
+
+        // Ensure req.user exists
+        if (!req.user) {
+            console.log("User not logged in");
+            return res.render('readmore', { readBlog, cart: [] });
+        }
+
+        const userId = req.user._id; // Get the logged-in user's ID
+        const cart = await Cart.find({ userId }).populate("productId");
+
+        console.log("Cart Data:", cart); // Debugging step
+
+        return res.render('readmore', { readBlog, cart });
 
     } catch (err) {
-        console.error(err);
-        return false
+        console.error("Error in readMore controller:", err);
+        return res.status(500).send("Server Error");
     }
-}
+};
 
 
 const deleteUser = async (req, res) => {
@@ -214,109 +226,38 @@ const logout = (req, res) => {
 
 
 
-//forgot password
-const otpPage = async (req, res) => {
-    return res.render('otp')
-}
 
-const newPasswordpage = async (req, res) => {
+
+
+
+
+
+const addToCart = async (req, res) => {
     try {
-        return res.render('newpassword')
-    } catch (err) {
-        console.log(err);
-        return false
-    }
-}
+        let atc = req.query.atcid;
+        let userId = req.user ? req.user._id : null;
 
-const forgotPassword = async (req, res) => {
-    try {
-        let useremail = req.body.email;
-        console.log(useremail);
 
-        let user = await User.findOne({ email: useremail });
-        if (!user) {
-            console.log('User not found');
-            return res.redirect('/')
+        let cartItem = await addToCartModel.findOne({ userId, productId: atc });
+
+        if (!cartItem) {
+            cartItem = new addToCartModel({
+                userId,
+                productId: atc,
+                quantity: 1
+            });
+            await cartItem.save()
         }
-        const otp = Math.floor(100000 + Math.random() * 900000);
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'rohitt3891@gmail.com',
-                pass: 'shkz omkg ycoz vgwc'
-            }
-        });
 
-        var mailOptions = {
-            from: 'rohitt3891@gmail.com',
-            to: useremail,
-            subject: 'forgot password',
-            html: `<h2 style='color:green'>Hello ${user?.name} Your OTP is ${otp}</h2>`
-        };
+        const cartItems = await addToCartModel.find({ userId }).populate('productId')
 
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Email sent: ' + info.response);
-                let auth = {
-                    email: useremail,
-                    otp: otp
-                }
-                res.cookie('user', auth);
-                return res.redirect('/otp')
-            }
-        });
+        return res.render('addtocart', { cart: cartItems });
+
     } catch (error) {
-        console.log(error);
-        return false;
-
+        console.error(error);
+        return res.status(500).json({ error: "Internal Server Error" });
     }
-}
-
-
-const verifyOtp = async (req, res) => {
-    try {
-
-        let otp = req.body.otp;
-        let user = req.cookies.user;
-
-        if (otp == user.otp) {
-            return res.redirect('/newpassword');
-        }
-        else {
-            console.log("Otp is not match");
-            return res.redirect('/otp');
-        }
-
-    } catch (err) {
-        console.log(err);
-        return false;
-    }
-}
-
-
-const usernewPassword = async (req, res) => {
-    try {
-        let newpass = req.body.newpass;
-        let cofpass = req.body.cpassword;
-        if (newpass == cofpass) {
-            let email = req.cookie?.user?.email;
-            let user = await User.findOneAndUpdate({ email: email }, {
-                password: newpass
-            })
-            res.clearCookie('user')
-            return res.redirect('/');
-        } else {
-            console.log("Password not match");
-            return res.redirect('/newpassword');
-        }
-
-    } catch (err) {
-        console.log(err);
-        return false;
-    }
-}
+};
 
 
 module.exports = {
@@ -332,6 +273,6 @@ module.exports = {
     updateBlog,
     loginUser,
     logout, readMore,
-    otpPage, newPasswordpage, forgotPassword, verifyOtp, usernewPassword
+    addToCart
 
 };
