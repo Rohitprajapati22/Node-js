@@ -35,16 +35,17 @@ const verifyToken = async (req, res, next) => {
     }
 }
 
-const checkAdmin = async (req, res) => {
+const checkAdmin = async (req, res, next) => {
     if (req.user?.role !== 'admin') {
         return res.status(401).send({
             success: false,
             message: "You are not admin"
-        })
+        });
     }
-    return next();
 
-}
+    return next(); // Now next is properly defined
+};
+
 
 
 

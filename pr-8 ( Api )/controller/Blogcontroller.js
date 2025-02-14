@@ -69,8 +69,14 @@ const userwiseviewBlog = async (req, res) => {
 
 const admindeleteBlog = async (req, res) => {
     try {
-       let id = req.query.id
+        let id = req.query.id
         let singleblog = await Blog.findById(id)
+        fs.unlinkSync(singleblog?.image)
+        await Blog.findByIdAndDelete(id)
+        return res.status(200).send({
+            success: true,
+            message: "Blog deleted successfully",
+        })
         return res.json(singleblog)
     } catch (error) {
         return res.status(401).send({
@@ -80,6 +86,66 @@ const admindeleteBlog = async (req, res) => {
     }
 }
 
+const updateBlog = async (req, res) => {
+    try {
+        const { id, title, content } = req.body;
+        if (req.file) {
+            let singleblog = await Blog.findById(id);
+            fs.unlinkSync(singleblog?.image);
+            await Blog.findByIdAndUpdate(id, {
+                title: title,
+                content: content,
+                image: req.file?.path
+            })
+            return res.status(200).send({
+                success: true,
+                message: "Blog is successfully updated"
+            })
+        } else {
+            let singleblog = await Blog.findById(id);
+            await Blog.findByIdAndUpdate(id, {
+                title: title,
+                content: content,
+                image: singleblog?.image
+            })
+            return res.status(200).send({
+                success: true,
+                message: "Blog is successfully updated"
+            })
+        }
+
+    } catch (err) {
+        return res.status(501).send({
+            success: false,
+            error: err
+        })
+    }
+}
+const userwiseDeleteBlog = async (req, res) => {
+    try {
+        let blogid = req.query?.blogid;
+        let singleblog = await Blog.findById(blogid);
+        let user = await Blog.find({ userId: singleblog?.userId });
+        if (user.length === 0) {
+            return res.status(404).send({
+                success: false,
+                message: "Blog not found"
+            })
+        }
+        fs.unlinkSync(singleblog?.image);
+        await Blog.findByIdAndDelete(blogid);
+        return res.status(200).send({
+            success: true,
+            message: "Blog is successfully deleted"
+        })
+    } catch (err) {
+        return res.status(501).send({
+            success: false,
+            error: err
+        })
+    }
+}
+
 module.exports = {
-    addBlog, adminviewBlog, userwiseviewBlog ,admindeleteBlog
+    addBlog, adminviewBlog, userwiseviewBlog, admindeleteBlog,updateBlog,userwiseDeleteBlog
 }
