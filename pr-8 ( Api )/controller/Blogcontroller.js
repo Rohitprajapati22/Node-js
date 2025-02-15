@@ -1,4 +1,5 @@
 const Blog = require('../models/BlogModel')
+const fs = require('fs');
 
 const addBlog = async (req, res) => {
 
@@ -71,13 +72,15 @@ const admindeleteBlog = async (req, res) => {
     try {
         let id = req.query.id
         let singleblog = await Blog.findById(id)
+    
+
         fs.unlinkSync(singleblog?.image)
+
         await Blog.findByIdAndDelete(id)
         return res.status(200).send({
             success: true,
             message: "Blog deleted successfully",
         })
-        return res.json(singleblog)
     } catch (error) {
         return res.status(401).send({
             success: false,
@@ -85,6 +88,7 @@ const admindeleteBlog = async (req, res) => {
         })
     }
 }
+
 
 const updateBlog = async (req, res) => {
     try {
@@ -121,6 +125,9 @@ const updateBlog = async (req, res) => {
         })
     }
 }
+
+
+
 const userwiseDeleteBlog = async (req, res) => {
     try {
         let blogid = req.query?.blogid;
@@ -147,5 +154,5 @@ const userwiseDeleteBlog = async (req, res) => {
 }
 
 module.exports = {
-    addBlog, adminviewBlog, userwiseviewBlog, admindeleteBlog,updateBlog,userwiseDeleteBlog
+    addBlog, adminviewBlog, userwiseviewBlog, admindeleteBlog, updateBlog, userwiseDeleteBlog
 }
