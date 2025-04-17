@@ -8,7 +8,7 @@ const verifyToken = (req, res, next) => {
         });
     }
     let newToken = token.slice(7);
-    JWT.verify(newToken, process.env.SECRET_KEY, (err, decode) => {
+    JWT.verify(newToken, "blog", (err, decode) => {
         if (err) {
             return res.status(500).send({
                 success: false,
@@ -21,14 +21,16 @@ const verifyToken = (req, res, next) => {
     })
 }
 //role base authentication 
-const authorizeRole = (req,res,next)=>{
-    if(req.user?.role != 'admin'){
-        return res.status(403).send({
-            success:false,
-            message:'You are not authorized to access this route'
+const authorizeRole = (roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req?.user?.role)) {
+            return res.status(403).send({
+                success: false,
+                message: 'You are not authorized to access this resource'
             })
+        }
+        return next();
     }
-    return next()
 }
 
 module.exports = {

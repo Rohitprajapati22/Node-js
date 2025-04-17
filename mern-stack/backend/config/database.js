@@ -1,12 +1,13 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const databese = async () => {
-    try {
-        let db = mongoose.connect('mongodb://127.0.0.1:27017/mear-stack')
-        console.log(`MongoDB Connected...`);
-    } catch (error) {
-        console.error(error)
-        return;
+ mongoose.connect(`mongodb://127.0.0.1:27017/mern-blog-project`);
+
+ const db = mongoose.connection;
+
+ db.on('connected' , (err) => {
+    if(err){
+        console.log(err);
+        return false;
     }
-}
-module.exports = databese;
+    console.log(`database successfully connected`);
+ })

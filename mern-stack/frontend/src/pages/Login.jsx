@@ -1,91 +1,93 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
+import "../style.css";
+import Header from '../component/Header';
 import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const { auth, setAuth } = useAuth();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [auth, setAuth] = useAuth();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const userRole = auth?.token?.user?.role;
+        
+        if (userRole === "admin") {
+            navigate("/admin/dashboard");
+        } else if (userRole === "user") {
+            navigate("/user/dashboard");
+        }
+    }, [auth?.token]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        try {
-            if (!email || !password) {
-                toast.error('All fields are required');
-                return;
-            }
+        if (!email || !password) {
+            toast.error("All fields are required");
+            return;
+        }
+        let res = await fetch(`http://localhost:8000/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+                
+        let user = await res.json();        
+        
+        if (user.success) {
+            let userlogin = {
+                token: user?.token,
+                user: user?.user
+            };
+            
+            localStorage.setItem("token", JSON.stringify(userlogin));
+            setAuth({ ...auth, token: userlogin });
 
-            let res = await fetch('http://localhost:8080/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
-            });
+            toast.success(user?.message);
 
-            let user = await res.json();
-            if (user.success) {
-                toast.success(user.message);
-
-                // Store token properly
-                localStorage.setItem('token', JSON.stringify({ token: user.token }));
-
-                // Update Auth Context
-                setAuth({ token: user.token });
-
-                // Redirect after 2 seconds
-                setTimeout(() => {
-                    navigate('/admin/dashboard');
-                }, 2000);
-            } else {
-                toast.error(user.message);
-            }
-        } catch (error) {
-            console.error("Login Error:", error);
-            toast.error("Something went wrong");
+            setTimeout(() => {
+                navigate(user?.user?.role === "admin" ? '/admin/dashboard' : '/user/dashboard');
+            }, 2000);
+        } else {
+            toast.error("Invalid Email or Password");
         }
     };
 
     return (
         <>
-            <div className='container'>
-                <div className="my-auto d-flex justify-content-center align-items-center p-3" style={{ height: '80vh' }}>
-                    <form className="border p-4 rounded shadow" style={{ width: '100%', maxWidth: '400px' }} onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1">Email address</label>
-                            <input
-                                type="email"
-                                className="form-control"
-                                id="exampleInputEmail1"
-                                placeholder="Enter email"
-                                onChange={(e) => setEmail(e.target.value)}
-                                value={email}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputPassword1">Password</label>
-                            <input
-                                type="password"
-                                className="form-control"
-                                id="exampleInputPassword1"
-                                placeholder="Password"
-                                onChange={(e) => setPassword(e.target.value)}
-                                value={password}
-                            />
-                        </div>
-                        <button type="submit" className="btn btn-primary btn-block mt-3">
-                            Submit
-                        </button>
-                        <div className="text-center mt-3">
-                            <p className="mb-0">If you are a new user,</p>
-                            <Link to={'/register'} className="btn btn-link p-0">
-                                Register here
-                            </Link>
-                        </div>
-                    </form>
+            <Header />
+            <div className="main-container">
+                <div className="form-wrapper">
+                    <div className="form-content">
+                        <form className="form login-form active" onSubmit={handleSubmit}>
+                            <h2>Welcome Back!</h2>
+                            <p>Login to your account to continue</p>
+                            <div className="input-group">
+                                <input type="email" placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={email} required />
+                                <span className="input-icon">📧</span>
+                            </div>
+                            <div className="input-group">
+                                <input type="password" placeholder='Password' onChange={(e) => setPassword(e.target.value)} value={password} required />
+                                <span className="input-icon">🔒</span>
+                            </div>
+                            
+                            {/* Forgot Password Link */}
+                            <p className="forgot-password">
+                                <Link to="/forgot-password">Forgot Password?</Link>
+                            </p>
+
+                            <button type="submit" className="btn btn-success w-100">Sign in</button>
+                            
+                            <p className="switch-text">
+                                Don’t have an account? <Link to={`/register`}> <span className="toggle-form">Sign Up</span> </Link>
+                            </p>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <ToastContainer position="top-right" autoClose={2000} />
+
+            <ToastContainer position="top-center" autoClose={1000} />
         </>
     );
 };

@@ -1,0 +1,169 @@
+.view_blog_container {
+    margin-left: 15px;
+}
+
+.blog-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+    padding: 15px;
+    gap: 30px;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Styling */
+.blog-img {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Typography Styling */
+.blog-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.blog-author {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.blog-content {
+    font-size: 0.95rem;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Footer Section */
+/* Blog Footer Buttons */
+.blog-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* Delete Button */
+.delete-btn {
+    background: #ff4d4d;
+    /* Bright Red */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 120px;
+}
+
+.delete-btn:hover {
+    background: #e60000;
+    /* Darker Red */
+}
+
+/* Edit Button */
+.edit-btn {
+    background: #007bff;
+    /* Bright Blue */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 120px;
+}
+
+.edit-btn:hover {
+    background: #0056b3;
+    /* Darker Blue */
+}
+
+
+.blog-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    width: 40%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.modal-img {
+    width: 95%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+
+.close-btn {
+    position: absolute;
+    right: -10px;
+    font-size: 26px;
+    cursor: pointer;
+    background-color: #000;
+    padding: 0px 10px;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.close-btn:hover {
+    background-color: darkred;
+}
+
+.view-btn {
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: 0.3s ease;
+}
+
+.view-btn:hover {
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);
+    transform: scale(1.05);
+}

@@ -1,0 +1,265 @@
+/* Ensure full height background */
+body {
+    min-height: 100vh;
+    background-size: cover;
+}
+
+/* Main Container */
+.main-container {
+    width: 50%;
+    max-width: 600px;
+    min-height: 420px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    margin: 2.5% auto;
+}
+
+/* Form Wrapper */
+.form-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+/* Form */
+.form {
+    width: 100%;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Fix */
+@media (max-width: 768px) {
+    .main-container {
+        width: 100%;
+        min-height: 50vh;
+    }
+}
+
+/* Typography */
+h2 {
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+    font-size: 30px;
+}
+
+p {
+    font-size: 18px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* Header start */
+.menu_1,
+.menu_2 {
+    display: flex;
+}
+
+.menu_1 .nav-link {
+    color: #fff !important;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.menu_2 .nav-item {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* Header end */
+
+/* Input Group */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.input-group .input-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #aaa;
+}
+
+/* Button */
+.btn {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: linear-gradient(to right, #007bff, #00c6ff);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 15px;
+}
+
+.btn:hover {
+    background-color: linear-gradient(to right, #0056b3, #0084d6);
+}
+
+/* Gender Group */
+.gender-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #ddd;
+    padding: 8px 0;
+    border-radius: 5px;
+}
+
+.gender-group .input-icon {
+    font-size: 18px;
+    color: #555;
+    margin-right: 5%;
+}
+
+.gender-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 40px;
+}
+
+/* Input Focus */
+.input-group>.form-control:focus {
+    z-index: 0;
+}
+
+a {
+    text-decoration: none !important;
+    color: #bb5166;
+    font-weight: 700;
+
+}
+
+/* contact page style  */
+
+/* Main Contact Container */
+.contact-container {
+    color: #fff;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+/* Hero Section */
+.contact-hero {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    height: 250px;
+    background: url("./src/assets/about_1.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 40px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contact-hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.contact-hero h1 {
+    position: relative;
+    z-index: 2;
+    font-size: 2.7rem;
+}
+
+
+/* Contact Info Section */
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px 10px;
+}
+
+.contact-card {
+    background-color: rgba(0, 0, 0, 0.911);
+    padding: 20px;
+    border-radius: 8px;
+    width: 450px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Icons */
+.contact-icon {
+    font-size: 4rem;
+    color: red;
+    margin-bottom: 25px;
+    background-color: #fff;
+    padding: 12px;
+    border-radius: 50px;
+    z-index: 99999;
+
+}
+
+/* Links */
+.contact-card a {
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-card p {
+    margin-top: 10px;
+}
+
+.contact-card a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+/* Forget password css  */
+
